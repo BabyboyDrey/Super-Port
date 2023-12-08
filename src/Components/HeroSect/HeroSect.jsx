@@ -24,10 +24,22 @@ import {
 import PP from '../../Public/dare-pp.jpg'
 import Shem from '../../Public/smartmockups_lp830hw7-removebg-preview.png'
 import NewDaily from '../../Public/smartmockups_lp831tdc-removebg-preview.png'
+import CHat from '../../Public/santa-hat-removebg-preview.png'
+import PartyHat from '../../Public/party-hat-removebg-preview.png'
+import NormieCap from '../../Public/cap-removebg-preview.png'
 
 const HeroSect = () => {
   const [adj, setAdj] = useState(1)
   const [verb, setVerb] = useState(1)
+  const [isOneProjectVisible, setIsOneProjectVisible] = useState(false)
+  const [isTwoProjectVisible, setIsTwoProjectVisible] = useState(false)
+  const [isImageVisible, setIsImageVisible] = useState(false)
+  const [month, setMonth] = useState(1)
+
+  const onePortfolioProjectRef = useRef(null)
+  const twoPortfolioProjectRef = useRef(null)
+  const imageRef = useRef(null)
+  const urguyRef = useRef(null)
 
   useEffect(() => {
     const adjIntervalId = setInterval(() => {
@@ -73,6 +85,84 @@ const HeroSect = () => {
     }
   }, [])
 
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.4
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.target === onePortfolioProjectRef.current) {
+          setIsOneProjectVisible(entry.isIntersecting)
+        } else if (entry.target === twoPortfolioProjectRef.current) {
+          setIsTwoProjectVisible(entry.isIntersecting)
+        } else if (entry.target === imageRef.current) {
+          setIsImageVisible(entry.isIntersecting)
+        }
+      })
+    }, options)
+
+    if (onePortfolioProjectRef.current) {
+      observer.observe(onePortfolioProjectRef.current)
+    }
+    if (twoPortfolioProjectRef.current) {
+      observer.observe(twoPortfolioProjectRef.current)
+    }
+    if (imageRef.current) {
+      observer.observe(imageRef.current)
+    }
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
+  useEffect(() => {
+    if (window.innerWidth < 769) {
+      if (isOneProjectVisible && onePortfolioProjectRef.current) {
+        onePortfolioProjectRef.current.classList.add('animate')
+        onePortfolioProjectRef.current.classList.add('hovered')
+      } else {
+        onePortfolioProjectRef.current.classList.remove('animate')
+        onePortfolioProjectRef.current.classList.remove('hovered')
+      }
+    }
+  }, [isOneProjectVisible, onePortfolioProjectRef])
+  useEffect(() => {
+    if (window.innerWidth < 769) {
+      if (isTwoProjectVisible && twoPortfolioProjectRef) {
+        twoPortfolioProjectRef.current.classList.add('animate2')
+        twoPortfolioProjectRef.current.classList.add('hovered')
+      } else {
+        twoPortfolioProjectRef.current.classList.remove('animate2')
+        twoPortfolioProjectRef.current.classList.remove('hovered')
+      }
+    }
+  }, [isTwoProjectVisible, twoPortfolioProjectRef])
+
+  useEffect(() => {
+    if (window.innerWidth < 769) {
+      if (isImageVisible && imageRef) {
+        imageRef.current.classList.add('tick')
+
+        imageRef.current.classList.remove('untick')
+        // urguyRef.current.classList.add('swoosh')
+      } else {
+        imageRef.current.classList.remove('tick')
+
+        imageRef.current.classList.add('untick')
+        // urguyRef.current.classList.remove('swoosh')
+      }
+    }
+  }, [isImageVisible, imageRef])
+
+  useEffect(() => {
+    const mnth = new Date().getMonth() + 1
+    setMonth(mnth)
+  }, [])
+
   return (
     <>
       <div className='hero-sect-container'>
@@ -94,7 +184,25 @@ const HeroSect = () => {
         <div className='cta-pp-container'>
           <div className='pp-container'>
             <div className='img-wrapper'>
-              <img alt='profile-pic' loading='lazy' src={PP} />
+              <div className='ur-guy swoosh'>
+                <img
+                  src={
+                    month === 12 || 1
+                      ? CHat
+                      : month === 5
+                      ? PartyHat
+                      : NormieCap
+                  }
+                  alt='image'
+                />
+              </div>
+              <img
+                className='img'
+                ref={imageRef}
+                alt='profile-pic'
+                loading='lazy'
+                src={PP}
+              />
             </div>
           </div>
           <div className='cta-buttons'>
@@ -206,7 +314,7 @@ const HeroSect = () => {
         <div className='porfolio-projects-container'>
           <h2>Selected Projects</h2>
           <div className='port-proj-conts'>
-            <div className='porfolio-project'>
+            <div className='porfolio-project' ref={onePortfolioProjectRef}>
               <div className='port-project-image-container'>
                 <img src={Shem} alt="shem's books" />
               </div>
@@ -225,7 +333,7 @@ const HeroSect = () => {
                 </a>
               </div>
             </div>
-            <div className='porfolio-project'>
+            <div className='porfolio-project' ref={twoPortfolioProjectRef}>
               <div className='port-project-image-container'>
                 <img src={NewDaily} alt='Daily blogs' />
               </div>

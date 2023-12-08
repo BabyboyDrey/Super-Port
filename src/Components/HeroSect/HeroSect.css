@@ -12,7 +12,7 @@
   justify-content: flex-start;
   align-items: center;
   background: linear-gradient(45deg, #14001b, #4e006d, #bf4588, #2d5cc1);
-  background-size: 100% 100%;
+  background-size: 150% 150%;
   animation: color 12s ease-in-out infinite;
   padding: 10px 20px;
   padding-bottom: 30px;
@@ -72,6 +72,7 @@ a button {
   justify-content: flex-start;
   align-items: center;
   width: 100%;
+  gap: 10px;
   height: fit-content;
   margin-bottom: 30px;
   margin-top: 10px;
@@ -89,35 +90,102 @@ a button {
   position: relative;
 }
 
-/* .img-wrapper::after {
-  content: "";
-  background: yellow;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  border-radius: 20px;
-} */
-
-.img-wrapper img {
+.img-wrapper .img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 20px;
   position: relative;
   box-shadow: 10px -10px 0 0 #14001b;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.img-wrapper .img.tick {
+  animation: tick 1.3s ease-in-out forwards;
+}
+
+@keyframes tick {
+  from {
+    box-shadow: 10px -10px 0 0 #14001b;
+  }
+  to {
+    box-shadow: 10px 10px 0 0 #14001b;
+  }
+}
+
+.img-wrapper .img.untick {
+  animation: untick 1.3s ease-in-out forwards;
+}
+
+@keyframes untick {
+  from {
+    box-shadow: 10px 10px 0 0 #14001b;
+  }
+  to {
+    box-shadow: 10px -10px 0 0 #14001b;
+  }
+}
+
+.ur-guy {
+  position: absolute;
+  left: -10px;
+  top: -20px;
+  transform: rotate(-25deg);
+  z-index: 2;
+
+  padding: 2px;
+  width: fit-content;
+  visibility: hidden;
+  height: fit-content;
+  transition: all 0.4s ease-in-out;
+}
+
+.ur-guy.swoosh {
+  animation: swoosh 1.4s ease-in-out forwards;
+}
+
+@keyframes swoosh {
+  0% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+
+.ur-guy img {
+  opacity: 0;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+
+.ur-guy.swoosh img {
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.ur-guy.swoosh img {
+  animation: appear 0.9s ease-in-out forwards;
+  animation-delay: 3.5s;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .cta-buttons {
   height: max-content;
 }
 
-.cta-buttons a:nth-child(1) button {
+.cta-buttons a button {
   background: #14001b;
-}
-.cta-buttons a:nth-child(2) button {
-  background: #14001b;
+  transition: all 0.3s ease-in-out;
 }
 
 .cta-buttons a {
@@ -254,10 +322,124 @@ a button {
   padding: 10px;
   border-radius: 10px;
   background: #2d5cc1;
-
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
   /* border: 1px solid #162d5f; */
 }
 
+.porfolio-project:nth-child(1)::after {
+  content: "dare";
+  width: 50px;
+  height: 550px;
+  z-index: 2;
+  background: white;
+  position: absolute;
+  top: -300px;
+  left: -30px;
+  border-radius: 10px 0 0 10px;
+  transform: rotate(45deg);
+  transition: all ease-in-out;
+  display: none;
+}
+
+.porfolio-project:nth-child(1).animate::after {
+  animation: flash 1.7s ease-in-out forwards;
+  display: inline-block;
+}
+
+.porfolio-project:nth-child(1)::before,
+.porfolio-project:nth-child(2)::before {
+  content: "dare";
+  width: 40px;
+  height: 550px;
+  z-index: 2;
+  background: whitesmoke;
+  opacity: 0;
+  position: absolute;
+  transform: rotate(6deg);
+  top: -110px;
+  right: 170px;
+}
+.porfolio-project:nth-child(1).hovered::before,
+.porfolio-project:nth-child(2).hovered::before {
+  opacity: 0;
+  transform: rotate(6deg);
+  animation: hoverred 3.2s ease-in-out forwards;
+  animation-delay: 5s;
+}
+
+/* .porfolio-project:nth-child(1).hovered {
+  box-shadow: 0 0 29px 2px #162d5f;
+} */
+
+.porfolio-project:nth-child(1).animate {
+  border: none;
+  box-shadow: none;
+  animation: border 1.8s ease-in-out forwards;
+}
+.porfolio-project:nth-child(2)::after {
+  content: "dare";
+  width: 50px;
+  height: 550px;
+  z-index: 2;
+  background: white;
+  position: absolute;
+  top: -300px;
+  left: -30px;
+  border-radius: 10px 0 0 10px;
+  transform: rotate(45deg);
+  transition: all ease-in-out;
+  display: none;
+}
+
+.porfolio-project:nth-child(2).animate2 {
+  border: none;
+  animation: border 1.8s ease-in-out forwards;
+}
+
+.porfolio-project:nth-child(2).animate2::after {
+  animation: flash 1.7s ease-in-out forwards;
+  display: inline-block;
+}
+@keyframes flash {
+  from {
+    top: -300px;
+    left: -30px;
+  }
+  to {
+    top: 260px;
+    left: 350px;
+  }
+}
+
+@keyframes border {
+  0% {
+    border: none;
+    width: 300px;
+    box-shadow: none;
+  }
+  50% {
+    box-shadow: 0 0 0.4px 0.2px #162d5f;
+  }
+  100% {
+    box-shadow: 0 0 3px 1.2px #162d5f;
+    border: 1.5px solid #cedaf4;
+    width: 310px;
+  }
+}
+@keyframes hoverred {
+  from {
+    opacity: 0;
+
+    transform: rotate(6deg);
+  }
+  to {
+    opacity: 0.1;
+
+    transform: rotate(10deg);
+  }
+}
 .port-project-texts-container {
   width: 100%;
   display: flex;
@@ -273,6 +455,28 @@ a button {
 .porfolio-projects-container h2 {
   font-family: "Chillax", sans-serif;
   color: #102145;
+  transition: all 1s ease-in-out;
+}
+
+.port-project-texts-container p {
+  line-height: 25px;
+}
+
+.porfolio-project.hovered .port-project-texts-container h3,
+.porfolio-project.hovered .port-project-texts-container a,
+.porfolio-project.hovered .port-project-texts-container p,
+.porfolio-project.hovered .porfolio-projects-container h2 {
+  color: #102145;
+  animation: hovered 1.3s ease-in-out forwards;
+}
+
+@keyframes hovered {
+  from {
+    color: #102145;
+  }
+  to {
+    color: white;
+  }
 }
 
 .port-project-texts-container h3 {
@@ -383,7 +587,7 @@ a button {
   }
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 813px) {
   .hero-sect-container {
     display: flex;
     flex-direction: row;
@@ -429,6 +633,7 @@ a button {
   }
 
   .porfolio-project {
-    width: 460px;
+    min-width: 460px;
+    width: 50vw;
   }
 }

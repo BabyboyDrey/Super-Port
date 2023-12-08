@@ -4,7 +4,7 @@ import Navbar from '../Navbar/Navbar'
 
 const NavHeadroom = () => {
   return (
-    <Headroom>
+    <Headroom style={{ zIndex: 10000 }}>
       <Navbar />
     </Headroom>
   )
