@@ -120,41 +120,35 @@ const HeroSect = () => {
   }, [])
 
   useEffect(() => {
-    if (window.innerWidth < 769) {
-      if (isOneProjectVisible && onePortfolioProjectRef.current) {
-        onePortfolioProjectRef.current.classList.add('animate')
-        onePortfolioProjectRef.current.classList.add('hovered')
-      } else {
-        onePortfolioProjectRef.current.classList.remove('animate')
-        onePortfolioProjectRef.current.classList.remove('hovered')
-      }
+    if (isOneProjectVisible && onePortfolioProjectRef.current) {
+      onePortfolioProjectRef.current.classList.add('animate')
+      onePortfolioProjectRef.current.classList.add('hovered')
+    } else {
+      onePortfolioProjectRef.current.classList.remove('animate')
+      onePortfolioProjectRef.current.classList.remove('hovered')
     }
   }, [isOneProjectVisible, onePortfolioProjectRef])
   useEffect(() => {
-    if (window.innerWidth < 769) {
-      if (isTwoProjectVisible && twoPortfolioProjectRef) {
-        twoPortfolioProjectRef.current.classList.add('animate2')
-        twoPortfolioProjectRef.current.classList.add('hovered')
-      } else {
-        twoPortfolioProjectRef.current.classList.remove('animate2')
-        twoPortfolioProjectRef.current.classList.remove('hovered')
-      }
+    if (isTwoProjectVisible && twoPortfolioProjectRef) {
+      twoPortfolioProjectRef.current.classList.add('animate2')
+      twoPortfolioProjectRef.current.classList.add('hovered')
+    } else {
+      twoPortfolioProjectRef.current.classList.remove('animate2')
+      twoPortfolioProjectRef.current.classList.remove('hovered')
     }
   }, [isTwoProjectVisible, twoPortfolioProjectRef])
 
   useEffect(() => {
-    if (window.innerWidth < 769) {
-      if (isImageVisible && imageRef) {
-        imageRef.current.classList.add('tick')
+    if (isImageVisible && imageRef) {
+      imageRef.current.classList.add('tick')
 
-        imageRef.current.classList.remove('untick')
-        // urguyRef.current.classList.add('swoosh')
-      } else {
-        imageRef.current.classList.remove('tick')
+      imageRef.current.classList.remove('untick')
+      // urguyRef.current.classList.add('swoosh')
+    } else {
+      imageRef.current.classList.remove('tick')
 
-        imageRef.current.classList.add('untick')
-        // urguyRef.current.classList.remove('swoosh')
-      }
+      imageRef.current.classList.add('untick')
+      // urguyRef.current.classList.remove('swoosh')
     }
   }, [isImageVisible, imageRef])
 
