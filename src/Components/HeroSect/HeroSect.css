@@ -328,10 +328,10 @@ a button {
   /* border: 1px solid #162d5f; */
 }
 
-.porfolio-project:nth-child(1)::after {
+/* .porfolio-project:nth-child(1)::after {
   content: "dare";
   width: 50px;
-  height: 550px;
+  height: 750px;
   z-index: 2;
   background: white;
   position: absolute;
@@ -341,7 +341,7 @@ a button {
   transform: rotate(45deg);
   transition: all ease-in-out;
   display: none;
-}
+} */
 
 .porfolio-project:nth-child(1).animate::after {
   animation: flash 1.7s ease-in-out forwards;
@@ -352,7 +352,7 @@ a button {
 .porfolio-project:nth-child(2)::before {
   content: "dare";
   width: 40px;
-  height: 550px;
+  height: 750px;
   z-index: 2;
   background: whitesmoke;
   opacity: 0;
@@ -378,14 +378,15 @@ a button {
   box-shadow: none;
   animation: border 1.8s ease-in-out forwards;
 }
+.porfolio-project:nth-child(1)::after,
 .porfolio-project:nth-child(2)::after {
   content: "dare";
   width: 50px;
-  height: 550px;
+  height: 1050px;
   z-index: 2;
   background: white;
   position: absolute;
-  top: -300px;
+  top: -1000px;
   left: -30px;
   border-radius: 10px 0 0 10px;
   transform: rotate(45deg);
@@ -404,7 +405,7 @@ a button {
 }
 @keyframes flash {
   from {
-    top: -300px;
+    top: -1000px;
     left: -30px;
   }
   to {
@@ -635,5 +636,34 @@ a button {
   .porfolio-project {
     min-width: 460px;
     width: 50vw;
+  }
+
+  .porfolio-project:nth-child(1).animate {
+    border: none;
+    box-shadow: none;
+    animation: border 1.8s ease-in-out forwards;
+  }
+  .porfolio-project:nth-child(2).animate {
+    border: none;
+    box-shadow: none;
+    animation: border 1.8s ease-in-out forwards;
+  }
+
+  @keyframes border {
+    0% {
+      border: none;
+      min-width: 460px;
+      width: 50vw;
+      box-shadow: none;
+    }
+    50% {
+      box-shadow: 0 0 0.4px 0.2px #162d5f;
+    }
+    100% {
+      box-shadow: 0 0 3px 1.2px #162d5f;
+      border: 1.5px solid #cedaf4;
+      min-width: 470px;
+      width: 55vw;
+    }
   }
 }

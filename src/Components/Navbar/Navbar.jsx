@@ -27,10 +27,8 @@ const Navbar = () => {
       // console.log('cv', mobileNavRef.style.height)
       // document.body.style.position = 'fixed'
       // document.body.classList.add('nomore')
-      document.body.classList.add('mobile-nav-open')
     } else {
       setActive(false)
-      document.body.classList.remove('mobile-nav-open')
       // document.body.style.position = 'static'
       // document.body.classList.remove('nomore')
     }
