@@ -382,7 +382,7 @@ a button {
 .porfolio-project:nth-child(2)::after {
   content: "dare";
   width: 50px;
-  height: 1050px;
+  height: 3050px;
   z-index: 2;
   background: white;
   position: absolute;
