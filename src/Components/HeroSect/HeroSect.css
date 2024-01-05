@@ -343,13 +343,13 @@ a button {
   display: none;
 } */
 
-.porfolio-project:nth-child(1).animate::after {
+.porfolio-project.animate::after {
   animation: flash 1.7s ease-in-out forwards;
   display: inline-block;
 }
 
-.porfolio-project:nth-child(1)::before,
-.porfolio-project:nth-child(2)::before {
+.porfolio-project::before,
+.porfolio-project::before {
   content: "dare";
   width: 40px;
   height: 750px;
@@ -361,8 +361,8 @@ a button {
   top: -110px;
   right: 170px;
 }
-.porfolio-project:nth-child(1).hovered::before,
-.porfolio-project:nth-child(2).hovered::before {
+.porfolio-project.hovered::before,
+.porfolio-project.hovered::before {
   opacity: 0;
   transform: rotate(6deg);
   animation: hoverred 3.2s ease-in-out forwards;
@@ -373,13 +373,12 @@ a button {
   box-shadow: 0 0 29px 2px #162d5f;
 } */
 
-.porfolio-project:nth-child(1).animate {
+.porfolio-project.animate {
   border: none;
   box-shadow: none;
   animation: border 1.8s ease-in-out forwards;
 }
-.porfolio-project:nth-child(1)::after,
-.porfolio-project:nth-child(2)::after {
+.porfolio-project::after {
   content: "dare";
   width: 50px;
   height: 3050px;
@@ -394,15 +393,15 @@ a button {
   display: none;
 }
 
-.porfolio-project:nth-child(2).animate2 {
+/* .porfolio-project.animate2 {
   border: none;
   animation: border 1.8s ease-in-out forwards;
 }
 
-.porfolio-project:nth-child(2).animate2::after {
+.porfolio-project.animate2::after {
   animation: flash 1.7s ease-in-out forwards;
   display: inline-block;
-}
+} */
 @keyframes flash {
   from {
     top: -1000px;
@@ -638,12 +637,7 @@ a button {
     width: 50vw;
   }
 
-  .porfolio-project:nth-child(1).animate {
-    border: none;
-    box-shadow: none;
-    animation: border 1.8s ease-in-out forwards;
-  }
-  .porfolio-project:nth-child(2).animate {
+  .porfolio-project.animate {
     border: none;
     box-shadow: none;
     animation: border 1.8s ease-in-out forwards;

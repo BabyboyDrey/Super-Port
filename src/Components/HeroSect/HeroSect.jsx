@@ -146,28 +146,28 @@ const HeroSect = () => {
   }, [isOneProjectVisible, onePortfolioProjectRef])
   useEffect(() => {
     if (isThreeProjectVisible && threePortfolioProjectRef) {
-      threePortfolioProjectRef.current.classList.add('animate2')
+      threePortfolioProjectRef.current.classList.add('animate')
       threePortfolioProjectRef.current.classList.add('hovered')
     } else {
-      threePortfolioProjectRef.current.classList.remove('animate2')
+      threePortfolioProjectRef.current.classList.remove('animate')
       threePortfolioProjectRef.current.classList.remove('hovered')
     }
   }, [isThreeProjectVisible, threePortfolioProjectRef])
   useEffect(() => {
     if (isFourProjectVisible && fourPortfolioProjectRef) {
-      fourPortfolioProjectRef.current.classList.add('animate2')
+      fourPortfolioProjectRef.current.classList.add('animate')
       fourPortfolioProjectRef.current.classList.add('hovered')
     } else {
-      fourPortfolioProjectRef.current.classList.remove('animate2')
+      fourPortfolioProjectRef.current.classList.remove('animate')
       fourPortfolioProjectRef.current.classList.remove('hovered')
     }
   }, [isFourProjectVisible, fourPortfolioProjectRef])
   useEffect(() => {
     if (isTwoProjectVisible && twoPortfolioProjectRef) {
-      twoPortfolioProjectRef.current.classList.add('animate2')
+      twoPortfolioProjectRef.current.classList.add('animate')
       twoPortfolioProjectRef.current.classList.add('hovered')
     } else {
-      twoPortfolioProjectRef.current.classList.remove('animate2')
+      twoPortfolioProjectRef.current.classList.remove('animate')
       twoPortfolioProjectRef.current.classList.remove('hovered')
     }
   }, [isTwoProjectVisible, twoPortfolioProjectRef])
