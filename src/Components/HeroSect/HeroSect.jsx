@@ -27,17 +27,23 @@ import NewDaily from '../../Public/smartmockups_lp831tdc-removebg-preview.png'
 import CHat from '../../Public/santa-hat-removebg-preview.png'
 import PartyHat from '../../Public/party-hat-removebg-preview.png'
 import NormieCap from '../../Public/cap-removebg-preview.png'
+import Setec from '../../Public/setecsystems-smartmockups_lr0qy9kd-removebg-preview.png'
+import Verse from '../../Public/versetelecoms-smartmockups_lr0qzye5-removebg-preview.png'
 
 const HeroSect = () => {
   const [adj, setAdj] = useState(1)
   const [verb, setVerb] = useState(1)
   const [isOneProjectVisible, setIsOneProjectVisible] = useState(false)
   const [isTwoProjectVisible, setIsTwoProjectVisible] = useState(false)
+  const [isThreeProjectVisible, setIsThreeProjectVisible] = useState(false)
+  const [isFourProjectVisible, setIsFourProjectVisible] = useState(false)
   const [isImageVisible, setIsImageVisible] = useState(false)
   const [month, setMonth] = useState(1)
 
   const onePortfolioProjectRef = useRef(null)
   const twoPortfolioProjectRef = useRef(null)
+  const threePortfolioProjectRef = useRef(null)
+  const fourPortfolioProjectRef = useRef(null)
   const imageRef = useRef(null)
   const urguyRef = useRef(null)
 
@@ -100,6 +106,10 @@ const HeroSect = () => {
           setIsTwoProjectVisible(entry.isIntersecting)
         } else if (entry.target === imageRef.current) {
           setIsImageVisible(entry.isIntersecting)
+        } else if (entry.target === threePortfolioProjectRef.current) {
+          setIsThreeProjectVisible(entry.isIntersecting)
+        } else if (entry.target === fourPortfolioProjectRef.current) {
+          setIsFourProjectVisible(entry.isIntersecting)
         }
       })
     }, options)
@@ -109,6 +119,12 @@ const HeroSect = () => {
     }
     if (twoPortfolioProjectRef.current) {
       observer.observe(twoPortfolioProjectRef.current)
+    }
+    if (threePortfolioProjectRef.current) {
+      observer.observe(threePortfolioProjectRef.current)
+    }
+    if (fourPortfolioProjectRef.current) {
+      observer.observe(fourPortfolioProjectRef.current)
     }
     if (imageRef.current) {
       observer.observe(imageRef.current)
@@ -128,6 +144,24 @@ const HeroSect = () => {
       onePortfolioProjectRef.current.classList.remove('hovered')
     }
   }, [isOneProjectVisible, onePortfolioProjectRef])
+  useEffect(() => {
+    if (isThreeProjectVisible && threePortfolioProjectRef) {
+      threePortfolioProjectRef.current.classList.add('animate2')
+      threePortfolioProjectRef.current.classList.add('hovered')
+    } else {
+      threePortfolioProjectRef.current.classList.remove('animate2')
+      threePortfolioProjectRef.current.classList.remove('hovered')
+    }
+  }, [isThreeProjectVisible, threePortfolioProjectRef])
+  useEffect(() => {
+    if (isFourProjectVisible && fourPortfolioProjectRef) {
+      fourPortfolioProjectRef.current.classList.add('animate2')
+      fourPortfolioProjectRef.current.classList.add('hovered')
+    } else {
+      fourPortfolioProjectRef.current.classList.remove('animate2')
+      fourPortfolioProjectRef.current.classList.remove('hovered')
+    }
+  }, [isFourProjectVisible, fourPortfolioProjectRef])
   useEffect(() => {
     if (isTwoProjectVisible && twoPortfolioProjectRef) {
       twoPortfolioProjectRef.current.classList.add('animate2')
@@ -308,6 +342,46 @@ const HeroSect = () => {
         <div className='porfolio-projects-container'>
           <h2>Selected Projects</h2>
           <div className='port-proj-conts'>
+            <div className='porfolio-project' ref={threePortfolioProjectRef}>
+              <div className='port-project-image-container'>
+                <img src={Setec} alt='Setec Systems' />
+              </div>
+              <div className='port-project-texts-container'>
+                <h3>Setec Systems</h3>
+                <p>
+                  It is a clean energy company providing engineering services
+                  and expertise on industrial and infrastructure projects.
+                </p>
+                <a
+                  href='https://setecsystem.com/'
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  URL LINK
+                </a>
+              </div>
+            </div>
+            <div className='porfolio-project' ref={fourPortfolioProjectRef}>
+              <div className='port-project-image-container'>
+                <img src={Verse} alt='Verse Telecoms' />
+              </div>
+              <div className='port-project-texts-container'>
+                <h3>Verse Telecoms</h3>
+                <p>
+                  It is an industry leading provider of voice and data
+                  communications services, equipped with highly trained
+                  professionals that posses wide experiences in developing
+                  solutions.
+                </p>
+                <a
+                  href='https://versetelecoms.com/'
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  URL LINK
+                </a>
+              </div>
+            </div>
             <div className='porfolio-project' ref={onePortfolioProjectRef}>
               <div className='port-project-image-container'>
                 <img src={Shem} alt="shem's books" />
