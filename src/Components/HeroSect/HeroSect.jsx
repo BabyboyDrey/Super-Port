@@ -29,6 +29,8 @@ import PartyHat from '../../Public/party-hat-removebg-preview.png'
 import NormieCap from '../../Public/cap-removebg-preview.png'
 import Setec from '../../Public/setecsystems-smartmockups_lr0qy9kd-removebg-preview.png'
 import Verse from '../../Public/versetelecoms-smartmockups_lr0qzye5-removebg-preview.png'
+import Speed from '../../Public/smartmockups_lshe4mlr-removebg-preview.png'
+import Bloom from '../../Public/smartmockups_lshjptdh-removebg-preview.png'
 
 const HeroSect = () => {
   const [adj, setAdj] = useState(1)
@@ -37,15 +39,18 @@ const HeroSect = () => {
   const [isTwoProjectVisible, setIsTwoProjectVisible] = useState(false)
   const [isThreeProjectVisible, setIsThreeProjectVisible] = useState(false)
   const [isFourProjectVisible, setIsFourProjectVisible] = useState(false)
+  const [isFiveProjectVisible, setIsFiveProjectVisible] = useState(false)
+  const [isSixProjectVisible, setIsSixProjectVisible] = useState(false)
   const [isImageVisible, setIsImageVisible] = useState(false)
-  const [month, setMonth] = useState(1)
+  const [month, setMonth] = useState(null)
 
   const onePortfolioProjectRef = useRef(null)
   const twoPortfolioProjectRef = useRef(null)
   const threePortfolioProjectRef = useRef(null)
   const fourPortfolioProjectRef = useRef(null)
+  const fivePortfolioProjectRef = useRef(null)
+  const sixPortfolioProjectRef = useRef(null)
   const imageRef = useRef(null)
-  const urguyRef = useRef(null)
 
   useEffect(() => {
     const adjIntervalId = setInterval(() => {
@@ -110,6 +115,10 @@ const HeroSect = () => {
           setIsThreeProjectVisible(entry.isIntersecting)
         } else if (entry.target === fourPortfolioProjectRef.current) {
           setIsFourProjectVisible(entry.isIntersecting)
+        } else if (entry.target === fivePortfolioProjectRef.current) {
+          setIsFiveProjectVisible(entry.isIntersecting)
+        } else if (entry.target === sixPortfolioProjectRef.current) {
+          setIsSixProjectVisible(entry.isIntersecting)
         }
       })
     }, options)
@@ -125,6 +134,12 @@ const HeroSect = () => {
     }
     if (fourPortfolioProjectRef.current) {
       observer.observe(fourPortfolioProjectRef.current)
+    }
+    if (fivePortfolioProjectRef.current) {
+      observer.observe(fivePortfolioProjectRef.current)
+    }
+    if (sixPortfolioProjectRef.current) {
+      observer.observe(sixPortfolioProjectRef.current)
     }
     if (imageRef.current) {
       observer.observe(imageRef.current)
@@ -163,6 +178,24 @@ const HeroSect = () => {
     }
   }, [isFourProjectVisible, fourPortfolioProjectRef])
   useEffect(() => {
+    if (isFiveProjectVisible && fivePortfolioProjectRef) {
+      fivePortfolioProjectRef.current.classList.add('animate')
+      fivePortfolioProjectRef.current.classList.add('hovered')
+    } else {
+      fivePortfolioProjectRef.current.classList.remove('animate')
+      fivePortfolioProjectRef.current.classList.remove('hovered')
+    }
+  }, [isFiveProjectVisible, fivePortfolioProjectRef])
+  useEffect(() => {
+    if (isSixProjectVisible && sixPortfolioProjectRef) {
+      sixPortfolioProjectRef.current.classList.add('animate')
+      sixPortfolioProjectRef.current.classList.add('hovered')
+    } else {
+      sixPortfolioProjectRef.current.classList.remove('animate')
+      sixPortfolioProjectRef.current.classList.remove('hovered')
+    }
+  }, [isSixProjectVisible, sixPortfolioProjectRef])
+  useEffect(() => {
     if (isTwoProjectVisible && twoPortfolioProjectRef) {
       twoPortfolioProjectRef.current.classList.add('animate')
       twoPortfolioProjectRef.current.classList.add('hovered')
@@ -189,6 +222,7 @@ const HeroSect = () => {
   useEffect(() => {
     const mnth = new Date().getMonth() + 1
     setMonth(mnth)
+    console.log(month, 'mn', mnth)
   }, [])
 
   return (
@@ -213,16 +247,8 @@ const HeroSect = () => {
           <div className='pp-container'>
             <div className='img-wrapper'>
               <div className='ur-guy swoosh'>
-                <img
-                  src={
-                    month === 12 || 1
-                      ? CHat
-                      : month === 5
-                      ? PartyHat
-                      : NormieCap
-                  }
-                  alt='image'
-                />
+                {((month === 1 || month === 12) && <img src={CHat} alt='' />) ||
+                  (month === 5 && <img src={PartyHat} alt='' />)}
               </div>
               <img
                 className='img'
@@ -342,6 +368,47 @@ const HeroSect = () => {
         <div className='porfolio-projects-container'>
           <h2>Selected Projects</h2>
           <div className='port-proj-conts'>
+            <div className='porfolio-project' ref={sixPortfolioProjectRef}>
+              <div className='port-project-image-container'>
+                <img src={Bloom} alt='Bloom' />
+              </div>
+              <div className='port-project-texts-container'>
+                <h3>Bloom Digital Media ltd</h3>
+                <p>
+                  An industry leading digital marketing agency in Abuja,
+                  Nigeria, they pride themselves on not just being a media
+                  solutions company but being curators of compelling visuals and
+                  brand stories.
+                </p>
+                <a
+                  href='https://bloomdigitmedia.com/'
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  URL LINK
+                </a>
+              </div>
+            </div>
+            <div className='porfolio-project' ref={fivePortfolioProjectRef}>
+              <div className='port-project-image-container'>
+                <img src={Speed} alt='Speed Express' />
+              </div>
+              <div className='port-project-texts-container'>
+                <h3>Speed Express</h3>
+                <p>
+                  Speed Express International Logistics & Couriers Limited is a
+                  delivery company in Nigeria, that provides exceptional
+                  delivery services within and outside Nigeria.
+                </p>
+                <a
+                  href='https://speedxpress.ng/'
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  URL LINK
+                </a>
+              </div>
+            </div>
             <div className='porfolio-project' ref={threePortfolioProjectRef}>
               <div className='port-project-image-container'>
                 <img src={Setec} alt='Setec Systems' />
